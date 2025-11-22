@@ -1,0 +1,69 @@
+.inst_block {
+    height: 100px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.block_label {
+    position: sticky;
+    top: 0px;
+    left: 0;
+    right: 0;
+    font-size: var(--control);
+    height: 20px;
+}
+
+.inst_block>.block_label {
+    color: var(--light-foreground);
+}
+
+.inst_block_ribbon {
+    cursor: pointer;
+    width: 100%;
+    height: 75px;
+    transition: box-shadow 0.2s ease;
+}
+
+.inst_block_ribbon:hover {
+    box-shadow: inset 0 0 100px 100px rgba(0, 0, 0, 0.1);
+}
+
+.gap_block {
+    position: absolute;
+    height: 28px;
+    top: calc((100px - 28px) / 2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gap_block>.block_label {
+    color: var(--gray);
+}
+
+.gap_block_ribbon {
+    width: 100%;
+    height: 8px;
+    top: calc((75px - 8px) / 2);
+    background-color: var(--light-gray);
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+
+}
+
+.gap_block_ribbon:hover {
+    box-shadow: inset 0 0 100px 100px rgba(0, 0, 0, 0.2);
+}
+
+.annotation_window {
+    width: 15px;
+    height: 15px;
+    border: solid 1px var(--gray);
+}
+
+.annotation_caption {
+    font-size: var(--caption);
+    color: var(--light-foreground);
+}

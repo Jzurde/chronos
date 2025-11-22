@@ -1,0 +1,42 @@
+.line_wrapper {
+    position: absolute;
+    top: 0;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.first_line {
+    composes: line_wrapper;
+    align-items: flex-start;
+}
+
+.last_line {
+    composes: line_wrapper;
+    transform: translateX(-100%);
+    align-items: flex-end;
+
+}
+
+.normal_line {
+    composes: line_wrapper;
+    transform: translateX(-50%);
+    align-items: center;
+}
+
+.line_line {
+    height: 120px;
+    width: 1px;
+    background-color: var(--gray);
+}
+
+.line_caption {
+    font-size: var(--caption);
+    color: var(--gray);
+}
+
+.slider {
+    position: absolute;
+    height: 140px;
+    top: 0;
+    left: 0;
+}

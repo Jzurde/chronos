@@ -1,0 +1,41 @@
+.custom_button {
+    cursor: pointer;
+    border-radius: 4px;
+    transition-duration: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: none;
+    font-size: var(--control);
+    font-weight: bolder;
+}
+
+
+.transparent {
+    composes: custom_button;
+    background: none;
+    color: var(--black);
+}
+
+.transparent:hover {
+    background-color: var(--primary-gray);
+}
+
+.primary {
+    composes: custom_button;
+    background-color: var(--primary);
+    color: var(--surface);
+}
+
+.primary:hover {
+    background-color: var(--dark-primary);
+}
+
+.normal {
+    composes: custom_button;
+    background-color: var(--light-gray);
+}
+
+.normal:hover {
+    background-color: var(--gray);
+}

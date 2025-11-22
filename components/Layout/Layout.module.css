@@ -1,0 +1,31 @@
+.horizantal {
+    display: flex;
+    align-items: center;
+}
+
+.horizantal_left {
+    composes: horizantal;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.horizantal_center {
+    composes: horizantal;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.horizantal_right {
+    composes: horizantal;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.horizantal_stretch {
+    composes: horizantal;
+    justify-content: space-between;
+}
+
+.horizantal_fit {
+    composes: horizantal;
+}

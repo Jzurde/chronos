@@ -1,0 +1,74 @@
+.tab_button {
+    padding: 10px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 4px;
+    transition-duration: 0.3s;
+    cursor: pointer;
+    position: relative;
+    font-size: var(--control);
+    font-weight: bolder;
+}
+
+.tab_button:hover {
+    background-color: var(--light-gray);
+}
+
+.selected {
+    background-color: var(--white);
+}
+
+.tab_button::before {
+    content: '';
+    position: absolute;
+    display: block;
+    background-color: transparent;
+    border-radius: 2px;
+    transition-duration: 0.3s;
+}
+
+.tab_button_vertical {
+    composes: tab_button;
+}
+
+.tab_button_vertical::before {
+    left: 0;
+    width: 4px;
+    height: 25px;
+}
+
+.tab_button_horizantal {
+    composes: tab_button;
+    margin-bottom: 16px;
+}
+
+.tab_button_horizantal::before {
+    bottom: 0;
+    width: 80%;
+    height: 4px;
+}
+
+.selected:hover {
+    background-color: var(--white);
+}
+
+.tab_button_vertical.selected::before {
+    left: -8px;
+    background-color: var(--primary);
+}
+
+.tab_button_horizantal.selected::before {
+    bottom: -8px;
+    background-color: var(--primary);
+}
+
+.panel_visible {
+    display: block;
+}
+
+.panel_invisible {
+    display: none;
+}
