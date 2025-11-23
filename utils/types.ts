@@ -32,3 +32,8 @@ export interface FunctionTime {
     opName: string;
     timeTaken: number;
 }
+
+export interface SelectedBlock {
+    wrapperId: number;
+    blockId: string;
+}

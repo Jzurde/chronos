@@ -3,7 +3,7 @@
 import { CSSProperties, useState } from 'react';
 import { ColorAnnotaion, GAPBlock, INSTBlock } from '../Timeblock/TimelineUtils';
 import styles from './Timeline.module.css'
-import { TimeBlock, TimeBlockColor, TimeBlockWrapper } from "@/utils/types";
+import { SelectedBlock, TimeBlock, TimeBlockColor, TimeBlockWrapper } from "@/utils/types";
 import { HorizantalPanel } from '../Layout/Layout';
 import CustomButton from '../Button/CustomButton';
 import { faBarsStaggered, faChartLine, faExclamation, faRepeat, faRulerHorizontal, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -26,12 +26,14 @@ export const zoomVariation: number[] = [
 ];
 
 export default function TimelineBlock(
-    { data, zoomSelection = 1, deleteBlock, updateLog }
+    { data, zoomSelection = 1, deleteBlock, updateLog, handleClick, selectedBlock }
         : {
             data: TimeBlockWrapper;
             zoomSelection?: number;
             deleteBlock: () => void;
             updateLog: (rawLog: string) => void;
+            handleClick: (selectedBlock: SelectedBlock) => void;
+            selectedBlock: SelectedBlock
         }
 ) {
     const [displayTimeline, changeDisplayTimeline] = useState(true);
@@ -44,6 +46,9 @@ export default function TimelineBlock(
         updateLog(logText);
         changeDisplayTimeline(true);
     }
+
+    const selectedBlockId =
+        (selectedBlock.wrapperId === data.blockId) ? selectedBlock.blockId : "";
 
 
     return (
@@ -104,7 +109,16 @@ export default function TimelineBlock(
                     blocks={data.timeBlocks || [] as TimeBlock[]}
                     rulerType={rulerType}
                     zoom={zoomVariation[zoomSelection]}
-                    showTextarea={() => changeDisplayTimeline(false)} />
+                    showTextarea={() => changeDisplayTimeline(false)}
+                    handleClick={(blockId) => {
+                        const selectedBlock: SelectedBlock = {
+                            wrapperId: data.blockId,
+                            blockId: blockId
+                        }
+                        handleClick(selectedBlock);
+                    }}
+                    selectedBlockId={selectedBlockId}
+                />
 
             </DisplayPanel>
         </div>
@@ -112,8 +126,15 @@ export default function TimelineBlock(
 }
 
 export function Timeline(
-    { blocks, zoom = 2, rulerType = 0, showTextarea }
-        : { blocks: TimeBlock[]; zoom?: number; rulerType?: number; showTextarea: () => void }
+    { blocks, zoom = 2, rulerType = 0, showTextarea, handleClick, selectedBlockId }
+        : {
+            blocks: TimeBlock[];
+            zoom?: number;
+            rulerType?: number;
+            showTextarea: () => void;
+            handleClick: (blockid: string) => void;
+            selectedBlockId: string;
+        }
 ) {
     if (blocks.length === 0) {
         return (
@@ -184,6 +205,8 @@ export function Timeline(
                                     layoutStyle={blockStyle}
                                     cycles={block.duration}
                                     showLabel={width >= 15}
+                                    onClick={() => handleClick(block.id)}
+                                    isSelected={selectedBlockId === block.id}
                                 />
                             )
                         }

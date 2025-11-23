@@ -13,3 +13,14 @@ export default function Container(
         </div>
     )
 }
+
+export function Placeholder(
+    { children }
+        : { children: React.ReactNode; }
+) {
+    return (
+        <div className={styles.placeholder}>
+            {children}
+        </div>
+    )
+}

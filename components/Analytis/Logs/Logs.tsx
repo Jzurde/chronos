@@ -2,8 +2,11 @@ import { RawLog, TimeBlock, TimeBlockWrapper } from '@/utils/types';
 import styles from './Logs.module.css'
 import { TabButton, TabContainer, TabPanel } from '@/components/TabView/TabView';
 import { useState } from 'react';
-import { faBarsStaggered } from '@fortawesome/free-solid-svg-icons';
+import { faBarsStaggered, faLineChart } from '@fortawesome/free-solid-svg-icons';
 import { Cascadia_Code } from 'next/font/google'
+import { Placeholder } from '@/components/Container/Container';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ScrollableView from '@/components/ScrollableView/ScrollableView';
 
 const CascadiaCode = Cascadia_Code({
     weight: ["700", "400"],
@@ -17,9 +20,10 @@ export default function Logs(
     const [selectedTab, changeSelectedTab] = useState(0);
     if (datas.length === 0) {
         return (
-            <div className={styles.container_nodata}>
-                nodata
-            </div>
+            <Placeholder>
+                <FontAwesomeIcon icon={faLineChart} size="2x" />
+                <p>Press "Add" to start analyzing...</p>
+            </Placeholder>
         )
     }
     return (
@@ -36,24 +40,19 @@ export default function Logs(
                         />
                     )
                 })}
-
             </div>
             <div className={styles.right_area}>
+                <h2 className={styles.log_title}>Logs</h2>
+                <div className={`${styles.label_bars} ${CascadiaCode.className}`}>
+                    <div className={styles.bars_cycle}>cycles</div>
+                    <div className={styles.bars_status}>status</div>
+                    <div className={styles.bars_opname}>operation name</div>
+                    <div className={styles.bars_info}>info</div>
+                </div>
                 <TabContainer>
-                    <h2 className={styles.log_title}>Logs</h2>
-                    <div className={`${styles.label_bars} ${CascadiaCode.className}`}>
-                        <div className={styles.bars_cycle}>cycles</div>
-                        <div className={styles.bars_status}>status</div>
-                        <div className={styles.bars_opname}>operation name</div>
-                        <div className={styles.bars_info}>info</div>
-                    </div>
                     {datas.map((data, index) => {
                         if (!data.timeBlocks) {
-                            return (
-                                <div className={styles.area_nodata}>
-                                    nodata in logs
-                                </div>
-                            )
+                            return;
                         }
                         else {
                             return (
@@ -75,30 +74,32 @@ export function LogArea(
 ) {
     let visiual_index = 0;
     return (
-        <div className={styles.log_table}>
-            {datas.map((data: TimeBlock, index) => {
-                if (data.type === "GAP") {
-                    visiual_index = 0;
-                    return (
-                        <div key={index} className={styles.log_gap}>
-                            GAP
+        <ScrollableView>
+            <div className={styles.log_table}>
+                {datas.map((data: TimeBlock, index) => {
+                    if (data.type === "GAP") {
+                        visiual_index = 0;
+                        return (
+                            <div key={index} className={styles.log_gap}>
+                                GAP
+                            </div>
+                        )
+                    }
+                    else {
+                        return (<div key={index}>
+                            {data.details?.map((logs) => {
+                                visiual_index++;
+                                return (
+                                    <LogLine rawLogData={logs} isgray={visiual_index % 2 === 0} />
+                                )
+                            })}
                         </div>
-                    )
+                        )
+                    }
+                })
                 }
-                else {
-                    return (<>
-                        {data.details?.map((logs) => {
-                            visiual_index++;
-                            return (
-                                <LogLine rawLogData={logs} isgray={visiual_index % 2 === 0} />
-                            )
-                        })}
-                    </>
-                    )
-                }
-            })
-            }
-        </div>
+            </div>
+        </ScrollableView>
 
     )
 }

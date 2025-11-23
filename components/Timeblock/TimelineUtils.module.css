@@ -24,9 +24,20 @@
     width: 100%;
     height: 75px;
     transition: box-shadow 0.2s ease;
+    z-index: 5;
 }
 
-.inst_block_ribbon:hover {
+.selected_ribbon {
+    composes: inst_block_ribbon;
+    /* outline: solid 2px var(--primary); */
+    box-shadow: inset 0 0 100px 100px rgba(67, 105, 219, 0.5);
+}
+
+.unselected_ribbon {
+    composes: inst_block_ribbon;
+}
+
+.unselected_ribbon:hover {
     box-shadow: inset 0 0 100px 100px rgba(0, 0, 0, 0.1);
 }
 

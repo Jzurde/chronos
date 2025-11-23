@@ -2,7 +2,9 @@ import { FunctionTime, TimeBlockWrapper } from '@/utils/types';
 import styles from './Overall.module.css'
 import { Cascadia_Code } from 'next/font/google'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faArrowTurnUp } from '@fortawesome/free-solid-svg-icons';
+import { faBarsStaggered, faLineChart } from '@fortawesome/free-solid-svg-icons';
+import { Placeholder } from '@/components/Container/Container';
+import ScrollableView from '@/components/ScrollableView/ScrollableView';
 
 const CascadiaCode = Cascadia_Code({
     weight: ["700", "400"],
@@ -14,21 +16,32 @@ export default function Overall(
         : { datas: TimeBlockWrapper[] }
 ) {
     return (
-        <div className={styles.container}>
-            {(datas.length === 0) && (
-                <div className={styles.container_nodata}>
-                    no data.
+        <>{(datas.length === 0) ? (
+            <Placeholder>
+                <FontAwesomeIcon icon={faLineChart} size="2x" />
+                <p>Press "Add" to start analyzing...</p>
+            </Placeholder>
+        ) : (
+            <ScrollableView>
+                <div className={styles.container}>
+                    {(datas.length === 0) && (
+                        <Placeholder>
+                            <FontAwesomeIcon icon={faLineChart} size="2x" />
+                            <p>Press "Add" to start analyzing...</p>
+                        </Placeholder>
+                    )}
+                    {datas.map((data) => {
+                        return (
+                            <OverallCell
+                                key={data.blockId}
+                                data={data}
+                            />
+                        )
+                    })}
                 </div>
-            )}
-            {datas.map((data) => {
-                return (
-                    <OverallCell
-                        key={data.blockId}
-                        data={data}
-                    />
-                )
-            })}
-        </div>
+            </ScrollableView>
+        )
+        }</>
     )
 }
 
@@ -39,9 +52,10 @@ export function OverallCell(
     const timeBlocks = data.timeBlocks;
     if (!timeBlocks) {
         return (
-            <div className={styles.cell_nodata}>
-                no data
-            </div>
+            <Placeholder>
+                <FontAwesomeIcon icon={faBarsStaggered} size="2x" />
+                <p>Input Logs to display Overviews</p>
+            </Placeholder>
         )
     }
     else {
@@ -100,10 +114,10 @@ export function OverallCell(
                     </div>
                     <div className={styles.cell_data_cell}>
                         <h3>Functions</h3>
-                        {functionTime.map((thisFunction) => {
+                        {functionTime.map((thisFunction, index) => {
                             const percentages = Math.round(thisFunction.timeTaken / registeredCycles * 1000) / 10;
                             return (
-                                <>
+                                <div key={index}>
                                     <StatsList
                                         label={thisFunction.opName}
                                         data={`${thisFunction.timeTaken} cyls`}
@@ -113,7 +127,7 @@ export function OverallCell(
                                         isSub
                                         data={`${percentages} %`}
                                     />
-                                </>
+                                </div>
                             )
                         })}
                     </div>
@@ -137,7 +151,7 @@ export function StatsList(
             className={`${style} ${CascadiaCode.className}`}>
             <div className={styles.list_row}>
                 <div className={styles.list_label}>
-                    {isSub && <FontAwesomeIcon icon={faArrowRight} />}
+                    {/* {isSub && <FontAwesomeIcon icon={faArrowRight} />} */}
                     <span>{label}</span>
                 </div>
                 <div className={styles.list_data}>{data}</div>
