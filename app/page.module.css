@@ -1,4 +1,5 @@
 .container {
+  min-height: 100vh;
   padding: 16px 16px 0 16px;
 }
 
@@ -10,5 +11,15 @@
   background-color: #f7f7f7;
   border-radius: 4px;
   outline: none;
-  margin-bottom: 8px;
+}
+
+.nodata {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  background-color: var(--background);
+  border-radius: 8px;
+  gap: 4px;
 }

@@ -6,7 +6,7 @@ import styles from './Timeline.module.css'
 import { TimeBlock, TimeBlockColor, TimeBlockWrapper } from "@/utils/types";
 import { HorizantalPanel } from '../Layout/Layout';
 import CustomButton from '../Button/CustomButton';
-import { faBarsStaggered, faChartLine, faRepeat, faRulerHorizontal, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBarsStaggered, faChartLine, faExclamation, faRepeat, faRulerHorizontal, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { generateColor } from '@/utils/colorGenerator';
 import { Cascadia_Code } from 'next/font/google'
 import Ruler from '../Ruler/Ruler';
@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import LogTextarea from '../LogTextarea/LogTextarea';
 import DisplayPanel from '../DisplayPanel/DisplayPanel';
 import { parseChronosLogs } from '@/utils/parser';
+import FloatingControl, { FloatingP } from '../FloatingControl/FloatingControl';
 
 const CascadiaCode = Cascadia_Code({
     weight: ["700", "400"],
@@ -25,13 +26,14 @@ export const zoomVariation: number[] = [
 ];
 
 export default function TimelineBlock(
-    { data, zoomSelection = 1 }
-        : { data: TimeBlockWrapper; zoomSelection?: number; }
+    { data, zoomSelection = 1, deleteBlock }
+        : { data: TimeBlockWrapper; zoomSelection?: number; deleteBlock: () => void; }
 ) {
     const [displayTimeline, changeDisplayTimeline] = useState(true);
     const [logText, updateLogText] = useState("");
     const [rulerType, setRulerType] = useState(0); // 0: relative, 1: absolute
     const [timeBlocks, setTimeBlocks] = useState([] as TimeBlock[])
+    const [showDelete, setShowDelete] = useState(false);
     const logBuild = () => {
         const timeBlock: TimeBlock[] = parseChronosLogs(logText)
         setTimeBlocks(timeBlock)
@@ -55,16 +57,42 @@ export default function TimelineBlock(
                         icon={faBarsStaggered}
                         isSmall />
                     <CustomButton
-                        func={() => { }}
+                        func={() => setShowDelete(true)}
                         icon={faXmark}
                         isSmall />
+                    <FloatingControl
+                        isVisible={showDelete}
+                        onClose={() => setShowDelete(false)}
+                        insetsVertical={20}
+                        insetsHorizantal={-34}
+                        width={300}
+                        align='tl'>
+                        <FloatingP>Are you sure you want to delete this time chart?</FloatingP>
+                        <HorizantalPanel align='Right' gap={8}>
+                            <CustomButton
+                                isSmall
+                                title='Delete'
+                                func={deleteBlock}
+                                isTransparent />
+                            <CustomButton
+                                isPrimary
+                                isSmall
+                                title='Cancel'
+                                func={() => { setShowDelete(false) }} />
+                        </HorizantalPanel>
+                    </FloatingControl>
                 </HorizantalPanel>
             </HorizantalPanel>
             <DisplayPanel visible={!displayTimeline}>
                 <LogTextarea
                     textState={logText}
                     textUpdate={updateLogText}
-                    textSubmit={logBuild} />
+                    textSubmit={logBuild}>
+                    <span>[ChronosLog]  62827   FUNC0   DONE</span><br />
+                    <span>[ChronosLog]  62828   FUNC1   STALL</span><br />
+                    <span>[ChronosLog]  62829   FUNC2   DONE</span><br />
+                    <span>...</span>
+                </LogTextarea>
             </DisplayPanel>
             <DisplayPanel visible={displayTimeline}>
                 <Timeline
@@ -127,6 +155,7 @@ export function Timeline(
                         if (block.type === 'GAP') {
                             return (
                                 <GAPBlock
+                                    key={block.id}
                                     layoutStyle={blockStyle}
                                     cycles={block.duration}
                                     showLabel={width >= 15}
@@ -145,6 +174,7 @@ export function Timeline(
                             }
                             return (
                                 <INSTBlock
+                                    key={block.id}
                                     color={targetItem.color}
                                     layoutStyle={blockStyle}
                                     cycles={block.duration}
@@ -158,7 +188,7 @@ export function Timeline(
             </div>
             <HorizantalPanel align='Right' gap={8}>
                 {colorDictionary.map((colorData) => {
-                    return <ColorAnnotaion colorSet={colorData} />
+                    return <ColorAnnotaion key={colorData.opName} colorSet={colorData} />
                 })}
             </HorizantalPanel>
         </>

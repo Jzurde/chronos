@@ -26,7 +26,10 @@ export default function Ruler(
                 {ticks.map((tickCycle) => {
                     const left = tickCycle * zoom;
                     return (
-                        <RulerLine positionLeft={left} tickCycle={tickCycle} />
+                        <RulerLine
+                            key={tickCycle}
+                            positionLeft={left}
+                            tickCycle={tickCycle} />
                     )
                 })}
                 <RulerLine

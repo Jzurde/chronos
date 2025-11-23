@@ -5,8 +5,15 @@
 .container {
     position: absolute;
     z-index: 10;
-    padding: 8px;
+    padding: 16px;
     border-radius: 4px;
     background-color: var(--surface);
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.floating_p {
+    font-size: var(--control);
 }

@@ -7,12 +7,13 @@ import { parseChronosLogs } from "@/utils/parser";
 import TimelineBlock, { zoomVariation } from "@/components/Timeline/Timeline";
 import Container from "@/components/Container/Container";
 import CustomButton from "@/components/Button/CustomButton";
-import { faBarsStaggered, faChartArea, faCheck, faMagnifyingGlass, faMagnifyingGlassMinus, faMagnifyingGlassPlus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faBarsStaggered, faChartArea, faCheck, faLineChart, faMagnifyingGlass, faMagnifyingGlassMinus, faMagnifyingGlassPlus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { TabButton } from "@/components/TabView/TabView";
 import { HorizantalPanel } from "@/components/Layout/Layout";
 import { faHandPointer } from "@fortawesome/free-regular-svg-icons";
-import FloatingControl from "@/components/FloatingControl/FloatingControl";
+import FloatingControl, { FloatingP } from "@/components/FloatingControl/FloatingControl";
 import { Cascadia_Code } from 'next/font/google'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CascadiaCode = Cascadia_Code({
     weight: ["700", "400"],
@@ -24,6 +25,7 @@ export default function Home() {
     const [zoomIndex, changeZoomIndex] = useState(1);
     const [blocks, updateBlocks] = useState<TimeBlockWrapper[]>([]);
     const [newname, setNewname] = useState("");
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     const zoomIn = () => {
         if (zoomIndex < zoomVariation.length - 1) {
             changeZoomIndex(zoomIndex + 1)
@@ -35,8 +37,9 @@ export default function Home() {
         }
     };
     const addBlock = (name: string) => {
+        const newBlockId = (blocks.length) ? blocks[blocks.length - 1].blockId + 1 : 0;
         const newBlock: TimeBlockWrapper = {
-            blockId: blocks.length,
+            blockId: newBlockId,
             blockName: name
         };
         updateBlocks((prevBlocks) => [...prevBlocks, newBlock]);
@@ -47,6 +50,7 @@ export default function Home() {
     const createClickHandle = () => {
         if (newname == "") return
         addBlock(newname);
+        setModalIsOpen(false);
         setNewname("");
     }
 
@@ -57,17 +61,24 @@ export default function Home() {
     return (
         <div className={styles.container}>
             <Container>
-                <HorizantalPanel align="Strech">
+                <HorizantalPanel align="Strech" marginBottom={8}>
                     <h1>Time Charts</h1>
                     <HorizantalPanel align="Right" gap={8}>
                         <CustomButton func={() => zoomIn()} icon={faMagnifyingGlassPlus} />
                         <CustomButton func={() => zoomOut()} icon={faMagnifyingGlassMinus} />
                         <CustomButton func={() => { }} icon={faHandPointer} title="Unselect" />
-                        <CustomButton func={() => { }} icon={faPlus} title="Add" isPrimary />
+                        <CustomButton func={() => setModalIsOpen(true)} icon={faPlus} title="Add" isPrimary />
                     </HorizantalPanel>
                 </HorizantalPanel>
                 <HorizantalPanel align="Right">
-                    <FloatingControl align="tr" insetsVertical={8} width={320} isVisible={false}>
+                    <FloatingControl
+                        align="tr"
+                        insetsVertical={8}
+                        width={320}
+                        isVisible={modalIsOpen}
+                        onClose={() => setModalIsOpen(false)}
+                    >
+                        <FloatingP>Input new data's label</FloatingP>
                         <input
                             type="text"
                             value={newname}
@@ -85,9 +96,19 @@ export default function Home() {
                         </HorizantalPanel>
                     </FloatingControl>
                 </HorizantalPanel>
+                {(blocks.length === 0) && (
+                    <div className={styles.nodata}>
+                        <FontAwesomeIcon icon={faLineChart} size="2x" />
+                        <p>Press "Add" to start analyzing...</p>
+                    </div>
+                )}
                 {blocks.map((block) => {
                     return (
-                        <TimelineBlock data={block} zoomSelection={zoomIndex} />
+                        <TimelineBlock
+                            key={block.blockId}
+                            deleteBlock={() => { deleteBlock(block.blockId) }}
+                            data={block}
+                            zoomSelection={zoomIndex} />
                     )
                 })}
             </Container>
