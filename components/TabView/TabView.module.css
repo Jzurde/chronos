@@ -32,6 +32,7 @@
 
 .tab_button_vertical {
     composes: tab_button;
+    width: 100%;
 }
 
 .tab_button_vertical::before {
@@ -71,4 +72,9 @@
 
 .panel_invisible {
     display: none;
+}
+
+.tab_container {
+    display: flex;
+    flex-direction: column;
 }

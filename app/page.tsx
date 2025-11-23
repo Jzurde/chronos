@@ -8,12 +8,14 @@ import TimelineBlock, { zoomVariation } from "@/components/Timeline/Timeline";
 import Container from "@/components/Container/Container";
 import CustomButton from "@/components/Button/CustomButton";
 import { faBarsStaggered, faChartArea, faCheck, faLineChart, faMagnifyingGlass, faMagnifyingGlassMinus, faMagnifyingGlassPlus, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { TabButton } from "@/components/TabView/TabView";
+import { TabButton, TabContainer, TabPanel } from "@/components/TabView/TabView";
 import { HorizantalPanel } from "@/components/Layout/Layout";
 import { faHandPointer } from "@fortawesome/free-regular-svg-icons";
 import FloatingControl, { FloatingP } from "@/components/FloatingControl/FloatingControl";
 import { Cascadia_Code } from 'next/font/google'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Overall from "@/components/Analytis/Overall/Overall";
+import Logs from "@/components/Analytis/Logs/Logs";
 
 const CascadiaCode = Cascadia_Code({
     weight: ["700", "400"],
@@ -52,6 +54,22 @@ export default function Home() {
         addBlock(newname);
         setModalIsOpen(false);
         setNewname("");
+    }
+    const logBuild = (targetId: number, logText: string) => {
+        const timeBlock: TimeBlock[] = parseChronosLogs(logText)
+        // setTimeBlocks(timeBlock)
+        // console.log(timeBlock)
+        updateBlocks((prevBlocks) => {
+            return prevBlocks.map((block) => {
+                if (block.blockId === targetId) {
+                    return {
+                        ...block,
+                        timeBlocks: timeBlock
+                    };
+                }
+                return block;
+            })
+        })
     }
 
     const [selectedTab, changeSelectedTab] = useState(0);
@@ -105,6 +123,7 @@ export default function Home() {
                 {blocks.map((block) => {
                     return (
                         <TimelineBlock
+                            updateLog={(rawLog: string) => logBuild(block.blockId, rawLog)}
                             key={block.blockId}
                             deleteBlock={() => { deleteBlock(block.blockId) }}
                             data={block}
@@ -133,6 +152,18 @@ export default function Home() {
                         isSelected={selectedTab === 2}
                         isHorizantal />
                 </HorizantalPanel>
+                <TabContainer>
+                    <TabPanel isVisible={selectedTab === 0}>
+                        <Overall datas={blocks} />
+                    </TabPanel>
+                    <TabPanel isVisible={selectedTab === 1}>
+                        <Logs datas={blocks} />
+                    </TabPanel>
+                    <TabPanel isVisible={selectedTab === 2}>
+                        <p>tab 2</p>
+                        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    </TabPanel>
+                </TabContainer>
             </Container>
         </div>
     );
