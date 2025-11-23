@@ -20,6 +20,7 @@ export interface TimeBlock {
 export interface TimeBlockWrapper {
     blockId: number;
     blockName: string;
+    timeBlocks?: TimeBlock[];
 }
 
 export interface TimeBlockColor {

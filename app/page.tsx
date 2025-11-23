@@ -53,6 +53,22 @@ export default function Home() {
         setModalIsOpen(false);
         setNewname("");
     }
+    const logBuild = (targetId: number, logText: string) => {
+        const timeBlock: TimeBlock[] = parseChronosLogs(logText)
+        // setTimeBlocks(timeBlock)
+        // console.log(timeBlock)
+        updateBlocks((prevBlocks) => {
+            return prevBlocks.map((block) => {
+                if (block.blockId === targetId) {
+                    return {
+                        ...block,
+                        timeBlocks: timeBlock
+                    };
+                }
+                return block;
+            })
+        })
+    }
 
     const [selectedTab, changeSelectedTab] = useState(0);
 
@@ -105,6 +121,7 @@ export default function Home() {
                 {blocks.map((block) => {
                     return (
                         <TimelineBlock
+                            updateLog={(rawLog: string) => logBuild(block.blockId, rawLog)}
                             key={block.blockId}
                             deleteBlock={() => { deleteBlock(block.blockId) }}
                             data={block}

@@ -26,20 +26,25 @@ export const zoomVariation: number[] = [
 ];
 
 export default function TimelineBlock(
-    { data, zoomSelection = 1, deleteBlock }
-        : { data: TimeBlockWrapper; zoomSelection?: number; deleteBlock: () => void; }
+    { data, zoomSelection = 1, deleteBlock, updateLog }
+        : {
+            data: TimeBlockWrapper;
+            zoomSelection?: number;
+            deleteBlock: () => void;
+            updateLog: (rawLog: string) => void;
+        }
 ) {
     const [displayTimeline, changeDisplayTimeline] = useState(true);
     const [logText, updateLogText] = useState("");
     const [rulerType, setRulerType] = useState(0); // 0: relative, 1: absolute
-    const [timeBlocks, setTimeBlocks] = useState([] as TimeBlock[])
+    // const [timeBlocks, setTimeBlocks] = useState([] as TimeBlock[])
     const [showDelete, setShowDelete] = useState(false);
-    const logBuild = () => {
-        const timeBlock: TimeBlock[] = parseChronosLogs(logText)
-        setTimeBlocks(timeBlock)
-        console.log(timeBlock)
-        changeDisplayTimeline(true)
+
+    const handleSubmit = () => {
+        updateLog(logText);
+        changeDisplayTimeline(true);
     }
+
 
     return (
         <div className={styles.wrapper} id={`block${data.blockId}`}>
@@ -87,7 +92,7 @@ export default function TimelineBlock(
                 <LogTextarea
                     textState={logText}
                     textUpdate={updateLogText}
-                    textSubmit={logBuild}>
+                    textSubmit={handleSubmit}>
                     <span>[ChronosLog]  62827   FUNC0   DONE</span><br />
                     <span>[ChronosLog]  62828   FUNC1   STALL</span><br />
                     <span>[ChronosLog]  62829   FUNC2   DONE</span><br />
@@ -96,7 +101,7 @@ export default function TimelineBlock(
             </DisplayPanel>
             <DisplayPanel visible={displayTimeline}>
                 <Timeline
-                    blocks={timeBlocks}
+                    blocks={data.timeBlocks || [] as TimeBlock[]}
                     rulerType={rulerType}
                     zoom={zoomVariation[zoomSelection]}
                     showTextarea={() => changeDisplayTimeline(false)} />
