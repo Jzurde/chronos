@@ -27,3 +27,8 @@ export interface TimeBlockColor {
     opName: string;
     color: string;
 }
+
+export interface FunctionTime {
+    opName: string;
+    timeTaken: number;
+}
