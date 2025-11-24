@@ -1,0 +1,15 @@
+.container {
+    background-color: rgb(245, 247, 255);
+    border-radius: 8px;
+    padding-bottom: 8px;
+}
+
+.header {
+    padding: 16px 24px;
+    border-bottom: solid 1px var(--primary-gray);
+}
+
+.code_label {
+    font-size: var(--control);
+    color: var(--primary-gray);
+}
