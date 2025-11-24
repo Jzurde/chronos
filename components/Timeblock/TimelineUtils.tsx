@@ -27,9 +27,17 @@ export function GAPBlock(
 }
 
 export function INSTBlock(
-    { layoutStyle, color, cycles, showLabel }
-        : { layoutStyle: CSSProperties; color: string; cycles: number; showLabel: boolean; }
+    { layoutStyle, color, cycles, showLabel, onClick, isSelected }
+        : {
+            layoutStyle: CSSProperties;
+            color: string;
+            cycles: number;
+            showLabel: boolean;
+            onClick: () => void;
+            isSelected: boolean;
+        }
 ) {
+    const ribbon_style = isSelected ? styles.selected_ribbon : styles.unselected_ribbon;
     return (
         <div
             className={styles.inst_block}
@@ -38,8 +46,9 @@ export function INSTBlock(
                 {showLabel && cycles}
             </span>
             <div
+                onClick={onClick}
                 style={{ backgroundColor: color }}
-                className={styles.inst_block_ribbon}></div>
+                className={ribbon_style}></div>
         </div>
     )
 }

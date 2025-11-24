@@ -1,0 +1,131 @@
+.container {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    gap: 16px;
+}
+
+.left_menu {
+    min-width: 150px;
+    padding: 16px 8px 16px 16px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+}
+
+.right_area {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.log_title {
+    margin: 16px 0;
+}
+
+.log_table::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+}
+
+.log_table::-webkit-scrollbar-thumb {
+    background: var(--primary-gray);
+    border-radius: 4px;
+    cursor: default;
+}
+
+.log_table::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-gray-hover);
+}
+
+.line {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    font-size: var(--control);
+    gap: 8px;
+}
+
+.gray_line {
+    composes: line;
+    background-color: #f7f7f7;
+}
+
+.white_line {
+    composes: line;
+    background-color: var(--surface);
+}
+
+.line_cycle {
+    text-align: right;
+    width: 80px;
+}
+
+.line_opname {
+    width: 240px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.line_status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    font-size: var(--caption);
+    border-radius: 4px;
+    padding: 2px 0;
+}
+
+.line_status_done {
+    composes: line_status;
+    background-color: #d3f7dd;
+    color: #30bd56;
+}
+
+.line_status_stall {
+    composes: line_status;
+    background-color: #f4f6c4;
+    color: #bdb130;
+}
+
+.line_status_exec {
+    composes: line_status;
+    background-color: #c4e0f6;
+    color: #306fbd;
+}
+
+.line_info {
+    flex: 1;
+}
+
+.log_gap {
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+    background-color: var(--light-gray);
+    color: white;
+}
+
+.label_bars {
+    display: flex;
+    padding: 8px;
+    font-size: var(--caption);
+    gap: 8px;
+    color: var(--dark-gray);
+    border-bottom: solid 1px var(--dark-gray);
+}
+
+.bars_cycle {
+    text-align: right;
+    width: 80px;
+}
+
+.bars_opname {
+    width: 240px;
+}
+
+.bars_status {
+    width: 60px;
+}

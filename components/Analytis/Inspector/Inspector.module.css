@@ -1,0 +1,74 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: 16px;
+}
+
+.cell {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    gap: 8px;
+    padding: 16px;
+}
+
+.bar_container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+}
+
+.bar_area {
+    flex: 1;
+    background-color: #4DB6AC;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+    height: 30px;
+}
+
+.bar_ribbon {
+    background-color: #FFB74D;
+    transition-duration: 0.3s;
+}
+
+.bar_label {
+    font-size: var(--control);
+}
+
+.log_area {
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    gap: 8px;
+    padding: 16px;
+    margin-top: 16px;
+}
+
+.label_bars {
+    display: flex;
+    padding: 8px;
+    font-size: var(--caption);
+    gap: 8px;
+    color: var(--light-foreground);
+    border-bottom: solid 1px var(--dark-gray);
+    background-color: #f7f7f7;
+    margin: 16px 4px 0 0;
+    position: sticky;
+    top: 0;
+}
+
+.bars_cycle {
+    text-align: right;
+    width: 80px;
+}
+
+.bars_opname {
+    width: 240px;
+}
+
+.bars_status {
+    width: 60px;
+}

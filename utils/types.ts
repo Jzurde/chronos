@@ -20,9 +20,20 @@ export interface TimeBlock {
 export interface TimeBlockWrapper {
     blockId: number;
     blockName: string;
+    timeBlocks?: TimeBlock[];
 }
 
 export interface TimeBlockColor {
     opName: string;
     color: string;
+}
+
+export interface FunctionTime {
+    opName: string;
+    timeTaken: number;
+}
+
+export interface SelectedBlock {
+    wrapperId: number;
+    blockId: string;
 }

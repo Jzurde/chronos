@@ -3,7 +3,7 @@
 import { CSSProperties, useState } from 'react';
 import { ColorAnnotaion, GAPBlock, INSTBlock } from '../Timeblock/TimelineUtils';
 import styles from './Timeline.module.css'
-import { TimeBlock, TimeBlockColor, TimeBlockWrapper } from "@/utils/types";
+import { SelectedBlock, TimeBlock, TimeBlockColor, TimeBlockWrapper } from "@/utils/types";
 import { HorizantalPanel } from '../Layout/Layout';
 import CustomButton from '../Button/CustomButton';
 import { faBarsStaggered, faChartLine, faExclamation, faRepeat, faRulerHorizontal, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -26,20 +26,30 @@ export const zoomVariation: number[] = [
 ];
 
 export default function TimelineBlock(
-    { data, zoomSelection = 1, deleteBlock }
-        : { data: TimeBlockWrapper; zoomSelection?: number; deleteBlock: () => void; }
+    { data, zoomSelection = 1, deleteBlock, updateLog, handleClick, selectedBlock }
+        : {
+            data: TimeBlockWrapper;
+            zoomSelection?: number;
+            deleteBlock: () => void;
+            updateLog: (rawLog: string) => void;
+            handleClick: (selectedBlock: SelectedBlock) => void;
+            selectedBlock: SelectedBlock
+        }
 ) {
     const [displayTimeline, changeDisplayTimeline] = useState(true);
     const [logText, updateLogText] = useState("");
     const [rulerType, setRulerType] = useState(0); // 0: relative, 1: absolute
-    const [timeBlocks, setTimeBlocks] = useState([] as TimeBlock[])
+    // const [timeBlocks, setTimeBlocks] = useState([] as TimeBlock[])
     const [showDelete, setShowDelete] = useState(false);
-    const logBuild = () => {
-        const timeBlock: TimeBlock[] = parseChronosLogs(logText)
-        setTimeBlocks(timeBlock)
-        console.log(timeBlock)
-        changeDisplayTimeline(true)
+
+    const handleSubmit = () => {
+        updateLog(logText);
+        changeDisplayTimeline(true);
     }
+
+    const selectedBlockId =
+        (selectedBlock.wrapperId === data.blockId) ? selectedBlock.blockId : "";
+
 
     return (
         <div className={styles.wrapper} id={`block${data.blockId}`}>
@@ -87,7 +97,7 @@ export default function TimelineBlock(
                 <LogTextarea
                     textState={logText}
                     textUpdate={updateLogText}
-                    textSubmit={logBuild}>
+                    textSubmit={handleSubmit}>
                     <span>[ChronosLog]  62827   FUNC0   DONE</span><br />
                     <span>[ChronosLog]  62828   FUNC1   STALL</span><br />
                     <span>[ChronosLog]  62829   FUNC2   DONE</span><br />
@@ -96,10 +106,19 @@ export default function TimelineBlock(
             </DisplayPanel>
             <DisplayPanel visible={displayTimeline}>
                 <Timeline
-                    blocks={timeBlocks}
+                    blocks={data.timeBlocks || [] as TimeBlock[]}
                     rulerType={rulerType}
                     zoom={zoomVariation[zoomSelection]}
-                    showTextarea={() => changeDisplayTimeline(false)} />
+                    showTextarea={() => changeDisplayTimeline(false)}
+                    handleClick={(blockId) => {
+                        const selectedBlock: SelectedBlock = {
+                            wrapperId: data.blockId,
+                            blockId: blockId
+                        }
+                        handleClick(selectedBlock);
+                    }}
+                    selectedBlockId={selectedBlockId}
+                />
 
             </DisplayPanel>
         </div>
@@ -107,8 +126,15 @@ export default function TimelineBlock(
 }
 
 export function Timeline(
-    { blocks, zoom = 2, rulerType = 0, showTextarea }
-        : { blocks: TimeBlock[]; zoom?: number; rulerType?: number; showTextarea: () => void }
+    { blocks, zoom = 2, rulerType = 0, showTextarea, handleClick, selectedBlockId }
+        : {
+            blocks: TimeBlock[];
+            zoom?: number;
+            rulerType?: number;
+            showTextarea: () => void;
+            handleClick: (blockid: string) => void;
+            selectedBlockId: string;
+        }
 ) {
     if (blocks.length === 0) {
         return (
@@ -179,6 +205,8 @@ export function Timeline(
                                     layoutStyle={blockStyle}
                                     cycles={block.duration}
                                     showLabel={width >= 15}
+                                    onClick={() => handleClick(block.id)}
+                                    isSelected={selectedBlockId === block.id}
                                 />
                             )
                         }

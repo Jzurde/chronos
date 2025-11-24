@@ -15,15 +15,21 @@
     "@fortawesome/free-regular-svg-icons": "^7.1.0",
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
     "@fortawesome/react-fontawesome": "^3.1.0",
+    "cheerio": "^1.1.2",
+    "highlight.js": "^11.11.1",
+    "html-react-parser": "^5.2.10",
     "next": "16.0.3",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "react-resizable-panels": "^3.0.6",
+    "react-syntax-highlighter": "^16.1.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "typescript": "^5"
   }
 }
