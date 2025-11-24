@@ -15,12 +15,6 @@ const CascadiaCode = Cascadia_Code({
     subsets: ["latin"]
 });
 
-interface Props {
-    code: string;
-    language?: string;
-    fileName?: string;
-}
-
 export default function CodeBlock(
     { code, language = "c", fileName }
         : { code: string; language?: string; fileName?: string; }) {
