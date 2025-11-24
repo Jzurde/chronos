@@ -1,5 +1,12 @@
 import ScreenLayout, { ArticleArea, BC } from "@/components/ScreenLayout/ScreenLayout";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Getting Started",
+    description: "Learn how to format simulation logs and use Chronos effectively.",
+};
+
 export default function GettingStarted() {
     return (
         <ScreenLayout tabIndex={1}>

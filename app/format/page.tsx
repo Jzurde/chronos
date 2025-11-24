@@ -1,6 +1,13 @@
 import CodeBlock from "@/components/Page/Documents/CodeBlock/CodeBlock";
 import ScreenLayout, { ArticleArea, BC } from "@/components/ScreenLayout/ScreenLayout";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Format",
+    description: "Learn how to format simulation logs and use Chronos effectively.",
+};
+
 export default function Format() {
     const formatExample = `[ChronosLog]  <Cycle>  <OpName>  <Status>  <OptionalInfo>`;
     const cCodeExample = `// Example logic inside your simulator's step function
