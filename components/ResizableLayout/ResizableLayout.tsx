@@ -18,7 +18,7 @@ export default function ResizableLayout({
     return (
         <div className={styles.container}>
             <PanelGroup direction="vertical">
-                <Panel defaultSize={50} minSize={20}>
+                <Panel defaultSize={40} minSize={20}>
                     {topContent}
                 </Panel>
                 <PanelResizeHandle className={styles.thumb_area}>
@@ -26,7 +26,7 @@ export default function ResizableLayout({
                 </PanelResizeHandle>
 
                 {/* 右側のパネル */}
-                <Panel defaultSize={50} minSize={20}>
+                <Panel defaultSize={60} minSize={20}>
                     {bottomContent}
                 </Panel>
             </PanelGroup>

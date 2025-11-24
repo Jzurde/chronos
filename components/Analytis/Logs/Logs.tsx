@@ -52,7 +52,12 @@ export default function Logs(
                 <TabContainer>
                     {datas.map((data, index) => {
                         if (!data.timeBlocks) {
-                            return;
+                            return (
+                                <Placeholder key={index} layoutStyles={{ marginTop: '8px' }}>
+                                    <FontAwesomeIcon icon={faBarsStaggered} size="2x" />
+                                    <p>Input Logs to start analyzing</p>
+                                </Placeholder>
+                            )
                         }
                         else {
                             return (
@@ -87,10 +92,10 @@ export function LogArea(
                     }
                     else {
                         return (<div key={index}>
-                            {data.details?.map((logs) => {
+                            {data.details?.map((logs, index) => {
                                 visiual_index++;
                                 return (
-                                    <LogLine rawLogData={logs} isgray={visiual_index % 2 === 0} />
+                                    <LogLine key={index} rawLogData={logs} isgray={visiual_index % 2 === 0} />
                                 )
                             })}
                         </div>
