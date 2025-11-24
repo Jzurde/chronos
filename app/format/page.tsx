@@ -4,7 +4,7 @@ import ScreenLayout, { ArticleArea, BC } from "@/components/ScreenLayout/ScreenL
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Format",
+    title: "Output Log",
     description: "Learn how to format simulation logs and use Chronos effectively.",
 };
 
@@ -34,7 +34,7 @@ void step_custom_instruction() {
     return (
         <ScreenLayout tabIndex={2}>
             <ArticleArea>
-                <h2>Format</h2>
+                <h2>Output Log</h2>
                 <p>To visualize your simulation in Chronos, your simulator must output logs in a specific format via standard output (stdout) or a text file.</p>
 
                 <h3>Basic Syntax</h3>

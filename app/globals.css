@@ -226,6 +226,8 @@ a {
   border-radius: 8px
     /*replace*/
   ;
+  width: 100%;
+  height: auto;
 }
 
 .article_area table {

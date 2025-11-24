@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chronos
+An interactive Gantt chart visualization tool for RISC-V cycle-accurate simulation logs. Analyze latency, detect memory stalls, and optimize custom instructions overhead.
 
-## Getting Started
+![](./public/eyecatch-2.png)
 
-First, run the development server:
+## What is Chronos?
+**Chronos** is a web-based profiling and visualization tool designed specifically for `RISC-V` custom instruction development and cycle-accurate simulator analysis.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+While standard waveforms (like `.vcd`) are excellent for debugging signals, they are often too granular for performance tuning. Chronos bridges the gap between hardware simulation and software profiling by converting cycle logs into an interactive Gantt chart. This allows developers to instantly visualize instruction latency, memory stalls, and software overheads.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Key Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Cycle-Accurate Visualization**: Maps every execution cycle to a visual timeline, preserving the exact duration of custom instructions.
+- **Stall Analysis**: Distinguishes between active execution (`EXEC`) and pipeline stalls (`STALL`), helping you identify memory bottlenecks immediately.
+- **Overhead Detection**: Automatically detects "Gaps" between custom instructions. These gaps reveal hidden software overheads (such as loop control, branching, or compiler inefficiencies) that are often invisible in standard hardware simulations.
+- **Zero-Setup**: Runs entirely in the browser using text-based log input. No installation or complex environment configuration is required.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Use Cases
+- **Custom Extension Profiling**: optimizing the latency of new `RISC-V` instructions (e.g., Matrix acceleration).
+- **`HLS` (High-Level Synthesis) Verification**: confirming that synthesized hardware behaves with the expected throughput and latency.
+- **Compiler Optimization**: measuring the ratio of useful computation time versus control flow overhead.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## How to Use
+- **Chronos**: [https://chronos.jzurde.jp](https://chronos.jzurde.jp)
+- **Full Documentaion**
+  - [Getting Started](https://chronos.jzurde.jp/getting_started)
+  - [Output Log](https://chronos.jzurde.jp/format)
+  - [Analyze Log](https://chronos.jzurde.jp/screen)
