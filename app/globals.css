@@ -120,6 +120,11 @@ a {
   line-height: 1.6em;
 }
 
+.article_area ol {
+  padding: revert;
+  list-style: revert;
+}
+
 .article_area ul {
   padding: revert;
   list-style: revert;
@@ -228,6 +233,10 @@ a {
   ;
   width: 100%;
   height: auto;
+}
+
+.article_area .screenshots {
+  width: 60%;
 }
 
 .article_area table {
