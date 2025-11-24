@@ -122,11 +122,11 @@ export default function Screen() {
                 />
                 <ol>
                     <li><b>Click</b> on any colored block (Instruction Ribbon) within the timeline.</li>
-                    <li>The <b>Inspector Panel</b> will open (typically on the right side).</li>
+                    <li>The <b>Inspector Panel</b> will open (typically on the bottom half).</li>
                     <li>Here you can view critical metrics such as:</li>
                     <ul>
                         <li><b>Overall Cycles</b>: Total duration of the instruction.</li>
-                        <li><b>Efficiency Rate</b>: The ratio of active execution (EXEC) versus memory stalls (STALL).</li>
+                        <li><b>Efficiency Rate</b>: The ratio of active execution (<BC>EXEC</BC>) versus memory stalls (<BC>STALL</BC>).</li>
                         <li><b>Context</b>: Cycle gaps before and after the instruction (Software Overhead).</li>
                         <li><b>Raw Data</b>: Detailed attributes like memory addresses or burst sizes.</li>
                     </ul>
