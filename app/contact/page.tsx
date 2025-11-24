@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Contact",
-    description: "Contact the creator for support",
+    description: "Contact the creator for support.",
 };
 
 export default function Screen() {
