@@ -43,21 +43,21 @@ export const metadata: Metadata = {
     title: "Chronos - RISC-V Cycle Profiler",
     description: "Visualize hardware simulation logs instantly. Detect stalls and optimize execution cycles.",
     siteName: "Chronos",
-    // images: [
-    //   {
-    //     url: "/og-image.png",
-    //     width: 1200,
-    //     height: 630,
-    //     alt: "Chronos Dashboard Preview",
-    //   },
-    // ],
+    images: [
+      {
+        url: "/eyecatch-2.png",
+        width: 1200,
+        height: 630,
+        alt: "Chronos Logo",
+      },
+    ],
   },
 
   twitter: {
     card: "summary_large_image",
     title: "Chronos - RISC-V Cycle Profiler",
     description: "Interactive visualization for RISC-V simulation logs.",
-    // images: ["/og-image.png"],
+    images: ["/eyecatch-2.png"],
   },
 
   robots: {

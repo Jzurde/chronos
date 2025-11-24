@@ -1,9 +1,9 @@
-import ScreenLayout, { ArticleArea, BC } from "@/components/ScreenLayout/ScreenLayout";
+import ScreenLayout, { ArticleArea } from "@/components/ScreenLayout/ScreenLayout";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Contact",
-    description: "Contact the creator for support",
+    description: "Contact the creator for support.",
 };
 
 export default function Screen() {

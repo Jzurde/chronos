@@ -1,4 +1,4 @@
-import CodeBlock from "@/components/Page/Documents/CodeBlock/CodeBlock";
+import CodeBlock from "@/components/CodeBlock/CodeBlock";
 import ScreenLayout, { ArticleArea, BC } from "@/components/ScreenLayout/ScreenLayout";
 
 import { Metadata } from "next";
