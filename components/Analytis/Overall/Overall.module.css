@@ -1,7 +1,9 @@
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(550px, 100%), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(550px, 100%), 1fr));
     gap: 16px;
+    min-height: 100%;
+    align-items: flex-start;
 }
 
 .cell_container {
