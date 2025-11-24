@@ -51,6 +51,14 @@ export default function GettingStarted() {
                         <b>Compiler Optimization</b>: measuring the ratio of useful computation time versus control flow overhead.
                     </li>
                 </ul>
+
+                <h3>Privacy & Security</h3>
+                <p>Chronos is designed with security in mind.</p>
+                <ul>
+                    <li><b>Client-Side Only</b>: All processing is performed locally in your browser using JavaScript.</li>
+                    <li><b>No Data Transmission</b>: Your log data is never sent to any external server or cloud storage.</li>
+                    <li><b>Open Source</b>: You can audit the source code in this repository to verify that no hidden communication exists.</li>
+                </ul>
             </ArticleArea>
         </ScreenLayout>
     )

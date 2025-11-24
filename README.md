@@ -20,6 +20,12 @@ While standard waveforms (like `.vcd`) are excellent for debugging signals, they
 - **`HLS` (High-Level Synthesis) Verification**: confirming that synthesized hardware behaves with the expected throughput and latency.
 - **Compiler Optimization**: measuring the ratio of useful computation time versus control flow overhead.
 
+## Privacy & Security
+Chronos is designed with security in mind.
+- **Client-Side Only**: All processing is performed locally in your browser using JavaScript.
+- **No Data Transmission**: Your log data is never sent to any external server or cloud storage.
+- **Open Source**: You can audit the source code in this repository to verify that no hidden communication exists.
+
 ## How to Use
 - **Chronos**: [https://chronos.jzurde.jp](https://chronos.jzurde.jp)
 - **Full Documentaion**
