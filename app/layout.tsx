@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans, Cascadia_Code } from 'next/font/google'
+import { Outfit, Cascadia_Code } from 'next/font/google'
 import "./globals.css";
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { config } from '@fortawesome/fontawesome-svg-core'
@@ -10,7 +10,7 @@ config.autoAddCss = false;
 //   description: "Innovative RISC-V CInst Profiler",
 // };
 
-const NotoSans = Noto_Sans({
+const NotoSans = Outfit({
   weight: ["800", "500"],
   subsets: ["latin"]
 });

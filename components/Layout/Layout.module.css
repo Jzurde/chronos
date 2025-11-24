@@ -29,3 +29,16 @@
 .horizantal_fit {
     composes: horizantal;
 }
+
+.two_container {
+    display: grid;
+    gap: 8px;
+}
+
+.two_cells {
+    display: flex;
+}
+
+.two_cells img {
+    width: 100% !important;
+}

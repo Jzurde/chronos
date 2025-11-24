@@ -23,3 +23,23 @@ export function HorizantalPanel(
         </div>
     )
 }
+
+export function TwoColumn(
+    { left, right, minwidth = 200 }
+        : { left?: React.ReactNode; right?: React.ReactNode; minwidth?: number; }
+) {
+    return (
+        <div
+            style={{
+                gridTemplateColumns: `repeat(auto-fill, minmax(min(${minwidth}px, 100%), 1fr))`
+            }}
+            className={styles.two_container}>
+            <div className={styles.two_cells}>
+                {left}
+            </div>
+            <div className={styles.two_cells}>
+                {right}
+            </div>
+        </div>
+    )
+}
