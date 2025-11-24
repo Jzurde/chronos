@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     siteName: "Chronos",
     images: [
       {
-        url: "/eyecatch.png",
+        url: "/eyecatch-2.png",
         width: 1200,
         height: 630,
         alt: "Chronos Logo",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Chronos - RISC-V Cycle Profiler",
     description: "Interactive visualization for RISC-V simulation logs.",
-    images: ["/eyecatch.png"],
+    images: ["/eyecatch-2.png"],
   },
 
   robots: {
