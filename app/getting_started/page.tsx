@@ -1,6 +1,7 @@
 import ScreenLayout, { ArticleArea, BC } from "@/components/ScreenLayout/ScreenLayout";
 
 import { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
     title: "Getting Started",
@@ -12,6 +13,12 @@ export default function GettingStarted() {
         <ScreenLayout tabIndex={1}>
             <ArticleArea>
                 <h2>Getting Started</h2>
+                <Image
+                    src="/eyecatch-2.png"
+                    alt="Chronos screen shots with logo"
+                    width={1200}
+                    height={630}
+                />
                 <h3>What is Chronos?</h3>
                 <p><b>Chronos</b> is a web-based profiling and visualization tool designed specifically for <BC>RISC-V</BC> custom instruction development and cycle-accurate simulator analysis.</p>
                 <p>While standard waveforms (like <BC>.vcd</BC>) are excellent for debugging signals, they are often too granular for performance tuning. Chronos bridges the gap between hardware simulation and software profiling by converting cycle logs into an interactive Gantt chart. This allows developers to instantly visualize instruction latency, memory stalls, and software overheads.</p>

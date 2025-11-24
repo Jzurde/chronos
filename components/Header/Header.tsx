@@ -58,7 +58,7 @@ export default function Header(
                         <TabButton
                             func={() => { }}
                             icon={faCode}
-                            title='Format'
+                            title='Output Log'
                             isSelected={selectedPage === 2}
                         />
                     </Link>
@@ -69,7 +69,7 @@ export default function Header(
                         <TabButton
                             func={() => { }}
                             icon={faHandPointer}
-                            title='Screen'
+                            title='Analyze Log'
                             isSelected={selectedPage === 3}
                         />
                     </Link>
