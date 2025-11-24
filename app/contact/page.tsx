@@ -1,4 +1,4 @@
-import ScreenLayout, { ArticleArea, BC } from "@/components/ScreenLayout/ScreenLayout";
+import ScreenLayout, { ArticleArea } from "@/components/ScreenLayout/ScreenLayout";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

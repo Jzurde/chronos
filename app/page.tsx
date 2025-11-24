@@ -1,6 +1,4 @@
-import Tools from "@/components/Page/Tools/Tools";
-import styles from './page.module.css';
-import Header from "@/components/Header/Header";
+import Tools from "@/components/Tools/Tools";
 import ScreenLayout from "@/components/ScreenLayout/ScreenLayout";
 
 export default function Home() {
