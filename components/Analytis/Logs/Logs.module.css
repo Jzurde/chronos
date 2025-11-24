@@ -53,6 +53,7 @@
 
 .white_line {
     composes: line;
+    background-color: var(--surface);
 }
 
 .line_cycle {

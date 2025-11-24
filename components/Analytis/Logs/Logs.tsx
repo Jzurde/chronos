@@ -56,7 +56,7 @@ export default function Logs(
                         }
                         else {
                             return (
-                                <TabPanel isVisible={selectedTab === index}>
+                                <TabPanel key={index} isVisible={selectedTab === index}>
                                     <LogArea datas={data.timeBlocks} />
                                 </TabPanel>
                             )
