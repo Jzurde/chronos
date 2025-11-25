@@ -1,0 +1,68 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ScrollableView from '../ScrollableView/ScrollableView';
+import styles from './MobileBlocker.module.css';
+import { faFaceFrown } from '@fortawesome/free-regular-svg-icons';
+import Image from 'next/image';
+import { BC } from '../ScreenLayout/ScreenLayout';
+
+export default function MobileBlocker() {
+    return (
+        <div className={styles.container}>
+            <ScrollableView>
+                <div className={`${styles.message_box} article_area`}>
+                    <section className={styles.hero}>
+                        <FontAwesomeIcon icon={faFaceFrown} size="4x" />
+                        <h2>Visit us with PC.</h2>
+                        <p>Chronos only supports environment with screen width larger than 635px.</p>
+                    </section>
+                    <Image
+                        src="/eyecatch-2.png"
+                        alt="Chronos screen shots with logo"
+                        width={1200}
+                        height={630}
+                    />
+                    <h3>What is Chronos?</h3>
+                    <p><b>Chronos</b> is a web-based profiling and visualization tool designed specifically for <BC>RISC-V</BC> custom instruction development and cycle-accurate simulator analysis.</p>
+                    <p>While standard waveforms (like <BC>.vcd</BC>) are excellent for debugging signals, they are often too granular for performance tuning. Chronos bridges the gap between hardware simulation and software profiling by converting cycle logs into an interactive Gantt chart. This allows developers to instantly visualize instruction latency, memory stalls, and software overheads.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>
+                            <b>Cycle-Accurate Visualization</b>: Maps every execution cycle to a visual timeline, preserving the exact duration of custom instructions.
+                        </li>
+                        <li>
+                            <b>Stall Analysis</b>: Distinguishes between active execution (<BC>EXEC</BC>) and pipeline stalls (<BC>STALL</BC>), helping you identify memory bottlenecks immediately.
+                        </li>
+                        <li>
+                            <b>Overhead Detection</b>: Automatically detects "Gaps" between custom instructions. These gaps reveal hidden software overheads (such as loop control, branching, or compiler inefficiencies) that are often invisible in standard hardware simulations.
+                        </li>
+                        <li>
+                            <b>Zero-Setup</b>: Runs entirely in the browser using text-based log input. No installation or complex environment configuration is required.
+                        </li>
+                    </ul>
+
+                    <h3>Use Cases</h3>
+                    <ul>
+                        <li>
+                            <b>Custom Extension Profiling</b>: optimizing the latency of new <BC>RISC-V</BC> instructions (e.g., Matrix acceleration).
+                        </li>
+                        <li>
+                            <b><BC>HLS</BC> (High-Level Synthesis) Verification</b>: confirming that synthesized hardware behaves with the expected throughput and latency.
+                        </li>
+                        <li>
+                            <b>Compiler Optimization</b>: measuring the ratio of useful computation time versus control flow overhead.
+                        </li>
+                    </ul>
+
+                    <h3>Privacy & Security</h3>
+                    <p>Chronos is designed with security in mind.</p>
+                    <ul>
+                        <li><b>Client-Side Only</b>: All processing is performed locally in your browser using JavaScript.</li>
+                        <li><b>No Data Transmission</b>: Your log data is never sent to any external server or cloud storage.</li>
+                        <li><b>Open Source</b>: You can audit the source code in this repository to verify that no hidden communication exists.</li>
+                    </ul>
+                </div>
+            </ScrollableView>
+        </div>
+    )
+}

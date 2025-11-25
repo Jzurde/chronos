@@ -3,6 +3,7 @@ import { Outfit, Cascadia_Code } from 'next/font/google'
 import "./globals.css";
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { config } from '@fortawesome/fontawesome-svg-core'
+import MobileBlocker from "@/components/MobileBlocker/MobileBlocker";
 config.autoAddCss = false;
 
 // export const metadata: Metadata = {
@@ -75,6 +76,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${NotoSans.className}`}>
         {children}
+        <MobileBlocker />
       </body>
     </html>
   );
