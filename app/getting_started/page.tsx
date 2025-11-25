@@ -1,4 +1,4 @@
-import ScreenLayout, { ArticleArea, BC } from "@/components/ScreenLayout/ScreenLayout";
+import ScreenLayout, { ArticleArea, BackgroundContainer, BC } from "@/components/ScreenLayout/ScreenLayout";
 
 import { Metadata } from "next";
 import Image from "next/image";
@@ -59,6 +59,11 @@ export default function GettingStarted() {
                     <li><b>No Data Transmission</b>: Your log data is never sent to any external server or cloud storage.</li>
                     <li><b>Open Source</b>: You can audit the source code in this repository to verify that no hidden communication exists.</li>
                 </ul>
+
+                <BackgroundContainer>
+                    <h4>Next...</h4>
+                    <p>In the next page(<a href="/format">Output Log</a>), you will learn how the Logs should be outputted from your simulator. The logs in specified format, which we call them "ChronosLog", can be analyzed on Chronos.</p>
+                </BackgroundContainer>
             </ArticleArea>
         </ScreenLayout>
     )

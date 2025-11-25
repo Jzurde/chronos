@@ -1,5 +1,5 @@
 import { TwoColumn } from "@/components/Layout/Layout";
-import ScreenLayout, { ArticleArea, BC } from "@/components/ScreenLayout/ScreenLayout";
+import ScreenLayout, { ArticleArea, BackgroundContainer, BC } from "@/components/ScreenLayout/ScreenLayout";
 import { Metadata } from "next";
 import Image from "next/image";
 
@@ -152,6 +152,15 @@ export default function Screen() {
                     <li>Input a different set of logs into the new block and click <BC>Analyze</BC>.</li>
                     <li>You can now visually compare the execution flows, latencies, and gaps between the two traces on the same screen.</li>
                 </ol>
+                <BackgroundContainer>
+                    <h4>You're All Set! 😄</h4>
+                    <p>
+                        You've completed the tutorial! Now, start analyzing your real data on the <a href="/">Dashboard</a>.
+                        We welcome any feedback or suggestions via the <a href="/contact">Contact</a> page,
+                        and contributions on <a href="https://github.com/Jzurde/chronos">GitHub</a>.
+                        (Remember, Chronos is fully open-source!)
+                    </p>
+                </BackgroundContainer>
             </ArticleArea>
         </ScreenLayout>
     )

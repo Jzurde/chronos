@@ -1,5 +1,5 @@
 import CodeBlock from "@/components/CodeBlock/CodeBlock";
-import ScreenLayout, { ArticleArea, BC } from "@/components/ScreenLayout/ScreenLayout";
+import ScreenLayout, { ArticleArea, BackgroundContainer, BC } from "@/components/ScreenLayout/ScreenLayout";
 
 import { Metadata } from "next";
 
@@ -121,6 +121,10 @@ void step_custom_instruction() {
                     fileName="standard output"
                 />
 
+                <BackgroundContainer>
+                    <h4>Next...</h4>
+                    <p>In the next page(<a href="/screen">Analyze Log</a>), you will learn how to use Chronos with step by step instruction to generate your first time chart.</p>
+                </BackgroundContainer>
 
             </ArticleArea>
         </ScreenLayout>

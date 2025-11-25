@@ -1,0 +1,85 @@
+/* Contact.module.css */
+
+.contactContainer {
+    max-width: 600px;
+    margin: 2rem auto;
+    font-family: sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.mainHeading {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.infoBox {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.contactList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.listItem {
+    margin-bottom: 15px;
+}
+
+.websiteItem {
+    margin-bottom: 5px;
+}
+
+.label {
+    display: inline-block;
+    width: 80px;
+    color: #555;
+}
+
+.creatorName {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.contactLink {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.noteItem {
+    margin-left: 80px;
+}
+
+.noteText {
+    color: #888;
+    font-size: 0.85em;
+}
+
+.githubContainer {
+    margin-top: 20px;
+    padding: 10px 0;
+}
+
+.githubButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #24292e;
+    color: #fff !important;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none !important;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.githubButton:hover {
+    background-color: #444c56;
+    /* Slightly lighter on hover */
+    text-decoration: none;
+}
