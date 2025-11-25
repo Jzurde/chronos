@@ -1,0 +1,33 @@
+@media screen and (max-width: 634px) {
+    .container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: var(--surface);
+        display: flex;
+    }
+}
+
+@media screen and (min-width: 635px) {
+    .container {
+        display: none;
+    }
+}
+
+.message_box {
+    padding: 16px;
+}
+
+.hero {
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+    background-color: #f7f7f7;
+    border-radius: 16px;
+    padding: 16px;
+}

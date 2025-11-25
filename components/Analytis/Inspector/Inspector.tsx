@@ -71,11 +71,11 @@ export default function Inspector(
                             label='Range'
                             data={`${selectedBlockData.startCycle} - ${selectedBlockData.endCycle} `}
                         />
-                        <StatsList
+                        {/* <StatsList
                             label='Status'
                             data={`warning`}
                             explanation='Taking longer than the average (15 cycles)'
-                        />
+                        /> */}
                     </div>
                     <div className={styles.cell}>
                         <h3>Efficiency</h3>
