@@ -144,6 +144,7 @@ a {
       /*replace*/
     );
   margin: 2px;
+  text-decoration: underline;
 }
 
 /* .article_area b {

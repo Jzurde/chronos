@@ -51,3 +51,14 @@ export function BC(
         </span>
     )
 }
+
+export function BackgroundContainer(
+    { children }
+        : { children: React.ReactNode; }
+) {
+    return (
+        <div className={styles.background_container}>
+            {children}
+        </div>
+    )
+}
